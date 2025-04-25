@@ -51,6 +51,12 @@ coverage.xml
 .pytest_cache/
 cover/
 
+.DS_Store
+
+venv
+__pycache__/
+models/
+
 # Translations
 *.mo
 *.pot
