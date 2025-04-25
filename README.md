@@ -7,7 +7,7 @@ This project provides a FastAPI-based backend for image classification using an 
 ## 🔧 Features
 
 - ONNX Runtime for inference
-- Image upload and classification endpoint (`/predict`)
+- Image upload and classification endpoint (`/deepfake`)
 - Cross-Origin support (CORS) for frontend integration
 - Dockerized for easy deployment
 - Model visualization support
