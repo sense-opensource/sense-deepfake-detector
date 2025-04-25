@@ -1,0 +1,12 @@
+services:
+  sense_deepfake_opensource:
+    container_name: sense_deepfake_opensource_container
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: sense_deepfake_opensource_image
+    ports:
+      - "3015:3015"  # map host:container
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Kolkata
