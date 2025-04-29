@@ -15,9 +15,7 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:5000",  # Alternative Vite port
-        "https://uat.getsense.co/deepfake",
-        "https://getsense.co/deepfake"
+        "http://localhost:5000"
     ],
     allow_credentials=True,
     allow_methods=["*"],

@@ -1,13 +1,19 @@
-# sense-deepfake-detector
+### 🕵️ Detect Deepfakes
+Secure your identity verification systems with Sense’s powerful deepfake detection. Prevent spoofing, fraud, and identity theft using advanced machine learning and computer vision.
+ 🧩 Overview : 
+As digital identity becomes the cornerstone of secure online interactions, the threat landscape has evolved far beyond password breaches and phishing. 
 
-This project provides a FastAPI-based backend for image classification using an ONNX model (e.g., EfficientNet). It detects whether an uploaded image is a **REAL** or **Deepfake**. The response includes a prediction label, and a visualized image with the result overlay.
+Modern attackers now leverage advanced spoofing techniques—such as printed photos, replayed videos, 3D masks, and AI-generated deepfakes—to trick facial recognition systems. 
 
+This calls for a new generation of AI-powered defenses that go beyond static image verification and ensure the authenticity of every face presented in digital workflows.
+
+This project provides a FastAPI-based backend for image classification using an ONNX model (e.g., EfficientNet). It detects whether an uploaded image is a REAL or Deepfake. The response includes a prediction label, confidence score, and a visualized image with the result overlay.
 ---
 
 ## 🔧 Features
 
 - ONNX Runtime for inference
-- Image upload and classification endpoint (`/deepfake`)
+- Image upload and classification endpoint (`/predict`)
 - Cross-Origin support (CORS) for frontend integration
 - Dockerized for easy deployment
 - Model visualization support
@@ -87,7 +93,7 @@ docker rm -f sense_deepfake_opensource_container
 docker rmi -f sense_deepfake_opensource_image
 
 # View logs
-docker logs sense-deepfake-opensource
+docker logs sense_deepfake_opensource_container
 
 
 ### License
