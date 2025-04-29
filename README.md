@@ -1,104 +1,101 @@
-### 🕵️ Detect Deepfakes
-Secure your identity verification systems with Sense’s powerful deepfake detection. Prevent spoofing, fraud, and identity theft using advanced machine learning and computer vision.
+<h1 align="center">  🕵️ Detect Deepfakes: Sense</h1>
 
-### 🧩 Overview : 
-As digital identity becomes the cornerstone of secure online interactions, the threat landscape has evolved far beyond password breaches and phishing. 
+<p align="center" width="100%">
+<img width="8%" src="https://badge-generator.vercel.app/api?label=License&status=MIT&color=6941C6"> <img width="12.6%" src="https://badge-generator.vercel.app/api?icon=Github&label=Last%20Commit&status=May&color=6941C6"/> <img width="10%" src="https://badge-generator.vercel.app/api?icon=Discord&label=Discord&status=Live&color=6941C6"> 
+</p>
 
-Modern attackers now leverage advanced spoofing techniques—such as printed photos, replayed videos, 3D masks, and AI-generated deepfakes—to trick facial recognition systems. 
+<h2 align="center">Welcome to Sense’s open source repository</h2>
 
-This calls for a new generation of AI-powered defenses that go beyond static image verification and ensure the authenticity of every face presented in digital workflows.
+<p align="center" width="100%">  
+<img width="4.5%" src="https://custom-icon-badges.demolab.com/badge/Fork-orange.svg?logo=fork"> <img width="4.5%" src="https://custom-icon-badges.demolab.com/badge/Star-yellow.svg?logo=star"> <img width="6.5%" src="https://custom-icon-badges.demolab.com/badge/Commit-green.svg?logo=git-commit&logoColor=fff"> 
+</p>
 
-This project provides a FastAPI-based backend for image classification using an ONNX model (e.g., EfficientNet). It detects whether an uploaded image is a REAL or Deepfake. The response includes a prediction label, confidence score, and a visualized image with the result overlay.
+<p align="center"> Secure your identity verification systems with Sense’s powerful deepfake detection. Prevent spoofing, fraud, and identity theft using advanced machine learning and computer vision</p>
 
----
+<h2 align="center"> 🧩 Overview</h2>
 
-### 🔧 Features
+<p align="center"> As digital identity becomes the cornerstone of secure online interactions, the threat landscape has evolved far beyond password breaches and phishing. </p>
 
-- ONNX Runtime for inference
-- Image upload and classification endpoint (`/predict`)
-- Cross-Origin support (CORS) for frontend integration
-- Dockerized for easy deployment
-- Model visualization support
+<p align="center"> Modern attackers now leverage advanced spoofing techniques—such as printed photos, replayed videos, 3D masks, and AI-generated deepfakes—to trick facial recognition systems. </p>
 
----
+<p align="center"> This calls for a new generation of AI-powered defenses that go beyond static image verification and ensure the authenticity of every face presented in digital workflows.</p>
 
-### 🧠 Model
+<h3 align="center">🔧 Features</h3>
 
-The ONNX model file is **not included** in the repository.  
-You must download the model file manually or programmatically and place it in the appropriate folder.
+<h4 align="center">1. ONNX Runtime for inference </h4>
+<h4 align="center">2. Image upload and classification endpoint (`/deepfake`) </h4>
+<h4 align="center">3. Cross-Origin support (CORS) for frontend integration </h4>
+<h4 align="center">4. Dockerized for easy deployment </h4>
+<h4 align="center">5. Model visualization support </h4>
 
-### ✅ Download Instructions
+<h4 align="center"> 🧠 Model </h4>
 
-Download the model file from CDN or S3 bucket:
+<p align="center"> TThe ONNX model file is **not included** in the repository.  
+You must download the model file manually or programmatically and place it in the appropriate folder.</p>
 
-wget https://cdn-or-s3-link.com/efficientnet-b7.onnx -P models/
+<h4 align="center"> ✅ Download Instructions </h4>
 
-Ensure the model is saved in:
+<p align="center"> Download the model file from CDN or S3 bucket: </p>
 
-models/efficientnet-b7.onnx
+<p align="center"> wget https://cdn-or-s3-link.com/2.7_80x80_MiniFASNetV2.pth -P resources/anti_spoof_models/  </p>
 
-### Clone the Repository
+<p align="center"> Ensure the model is saved in:  </p>
 
-git clone https://github.com/your-username/deepfake-api.git
-cd deepfake
+<p align="center"> resources/anti_spoof_models/2.7_80x80_MiniFASNetV2.pth </p>
 
-### Install Python Dependencies
-pip install -r requirements.txt
+<h4 align="center"> Clone the Repository </h4> 
 
-### Start the FastAPI Server
-uvicorn app:app --reload
+<p align="center"> git clone https://github.com/your-username/liveness.git </p>
 
-This will start the API server on:
-http://localhost:3015
+<p align="center"> cd liveness </p>
 
+<h3 align="center"> Install Python Dependencies </h3>
 
-### Running with Docker
-### Build Docker Image
-COMPOSE_BAKE=true docker build -t sense_deepfake_opensource_image .
+<p align="center"> pip install -r requirements.txt </p>
 
-### Run Docker Container
-docker run -d --name sense_deepfake_opensource_container -p 3015:3015 sense_deepfake_opensource_image
+<h3 align="center"> Start the FastAPI Server </h3>
 
-This will start the API server on:
-http://localhost:3015
+<p align="center"> uvicorn app:app --reload </p>
 
+<p align="center"> This will start the API server on: http://localhost:3015 </p>
 
-### 4. Run the Frontend
+<h3 align="center"> Running with Docker </h3>
+<h3 align="center"> Build Docker Image </h3>
 
-cd front-end
-npm install
-npm run dev
+<p align="center">COMPOSE_BAKE=true docker build -t sense_deepfake_opensource_image</p>
 
-By default, the frontend runs on:
-http://localhost:5000
+<h3 align="center"> Run Docker Container </h3>
 
+<p align="center">docker run -d --name sense_deepfake_opensource_container -p 3015:3015 sense_deepfake_opensource_image</p>
 
-### Project Structure
-.
-├── Dockerfile
-├── docker-compose.yml
-├── app.py/              # FastAPI app entrypoint
-├── src/                 # Anti-spoofing model logic
-├── resources/           # Pretrained model files
-└── front-end/           # Frontend application (optional)
+<p align="center">docker rm -f sense_liveness_opensource_container</p>
 
+<p align="center">This will start the API server on: http://localhost:3015 </p>
 
-### Useful Docker Commands
+<h3 align="center"> Run the Frontend </h3>
 
-### Stop container
-docker stop sense_deepfake_opensource_container
+<p align="center">cd front-end</p>
+<p align="center">npm install</p>
+<p align="center">npm run dev</p>
 
-### Remove container
-docker rm -f sense_deepfake_opensource_container
+<p align="center"> By default, the frontend runs on: http://localhost:5000</p>
 
-### Remove image
-docker rmi -f sense_deepfake_opensource_image
+<h3 align="center"> Useful Docker Commands</h3>
 
-### View logs
-docker logs sense_deepfake_opensource_container
+<h4 align="center"> Stop container </h4>
+<p align="center">docker stop sense_deepfake_opensource_container</p>
 
+<h4 align="center"> Remove container </h4>
+<p align="center">docker rm -f sense_deepfake_opensource_container</p>
 
-### License
-MIT License — free to use, share, and modify.
+<h4 align="center"> Stop container </h4>
+<p align="center">docker stop sense_deepfake_opensource_container</p>
 
+<h4 align="center"> Remove image </h4>
+<p align="center">docker rmi -f sense_deepfake_opensource_image</p>
+
+<h2 align="center"> View logs </h2>
+<p align="center">docker logs sense_deepfake_opensource_container</p>
+
+<p align="center"> MIT License — free to use, share, and modify </p>
 
