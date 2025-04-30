@@ -32,7 +32,7 @@
 
 <p> git clone https://github.com/sense-opensource/sense-deepfake-detector.git</p>
 
-<p> cd liveness </p>
+<p> cd sense-deepfake-detector </p>
 
 <h4> 🧠 Model </h4>
 
