@@ -79,7 +79,7 @@ This will start the API server on: http://localhost:3015
 <h3> Build Docker Image </h3>
 
 ```bash
-COMPOSE_BAKE=true docker build -t sense_deepfake_opensource_image
+docker build -t sense_deepfake_opensource_image .
 ```
 
 <h3> Run Docker Container </h3>
@@ -87,7 +87,7 @@ COMPOSE_BAKE=true docker build -t sense_deepfake_opensource_image
 ```docker
 docker run -d --name sense_deepfake_opensource_container -p 3015:3015 sense_deepfake_opensource_image
 
-docker rm -f sense_liveness_opensource_container</p>
+docker rm -f sense_liveness_opensource_container
 ```
 <p>This will start the API server on: http://localhost:3015 </p>
 
