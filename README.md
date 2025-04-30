@@ -46,7 +46,7 @@ cd sense-deepfake-detector
 
 <h4> 🧠 Model </h4>
 
-<p> TThe ONNX model file is **not included** in the repository.  
+<p> The ONNX model file is <b>not included</b> in the repository.  
 You must download the model file manually or programmatically and place it in the appropriate folder.</p>
 
 <h4> ✅ Download Instructions </h4>
