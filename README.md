@@ -61,13 +61,14 @@ Ensure the model is saved in:  models/efficientnet-b7.onnx
 
 ```
 
-<h3> Install Python Dependencies </h3>
+<h3>2. API Configuration </h3>
+<h4>Method 1: Install Python Dependencies </h4>
 
 ```bash
 pip install -r requirements.txt
 ```
 
-<h3> Start the FastAPI Server </h3>
+<h4> Start the FastAPI Server </h4>
 
 ```bash
 uvicorn app:app --reload
@@ -75,14 +76,14 @@ uvicorn app:app --reload
 
 This will start the API server on: http://localhost:3015
 
-<h3> Running with Docker </h3>
-<h3> Build Docker Image </h3>
+<h4>Method 2: Running with Docker </h4>
+<h4> Build Docker Image </h4>
 
 ```bash
 docker build -t sense_deepfake_opensource_image .
 ```
 
-<h3> Run Docker Container </h3>
+<h4> Run Docker Container </h4>
 
 ```docker
 docker run -d --name sense_deepfake_opensource_container -p 3015:3015 sense_deepfake_opensource_image
@@ -91,7 +92,7 @@ docker rm -f sense_liveness_opensource_container
 ```
 <p>This will start the API server on: http://localhost:3015 </p>
 
-<h3> Run the Frontend </h3>
+<h3>3. Run the Frontend </h3>
 
 ```bash
 cd front-end
