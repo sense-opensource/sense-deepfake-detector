@@ -88,7 +88,7 @@ docker build -t sense_deepfake_opensource_image .
 ```docker
 docker run -d --name sense_deepfake_opensource_container -p 3015:3015 sense_deepfake_opensource_image
 ```
-<p>This will start the API server on: http://localhost:3015 </p>
+This will start the API server on: http://localhost:3015
 
 <h3>3. Run the Frontend </h3>
 
