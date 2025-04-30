@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import './App.css';
 import axios from 'axios';
-import senselogo from "../front-end/images/sense-js-logo.svg"
+import senselogo from "./images/sense-js-logo.svg"
 
 function App() {
   const [selectedImage, setSelectedImage] = useState(null);
