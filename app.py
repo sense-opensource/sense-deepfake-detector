@@ -109,7 +109,6 @@ async def predict_image(file: UploadFile = File(...), model_name: str = Query("d
 
         # Visualize results
         visualized_image = visualize_results(image, label, confidence)
-        print(label)
         # Convert the image to base64
         _, buffer = cv2.imencode('.png', visualized_image)
         image_base64 = base64.b64encode(buffer).decode('utf-8')
