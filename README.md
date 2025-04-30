@@ -4,7 +4,7 @@
     <a href="https://github.com/sense-opensource/sense-deepfake-detector/blob/main/LICENSE">
         <img width="8%" src="https://badge-generator.vercel.app/api?label=License&status=MIT&color=6941C6">
     </a>
-    <img width="12.6%" src="https://badge-generator.vercel.app/api?icon=Github&label=Last%20Commit&status=May&color=6941C6"/> 
+    <!--<img width="12.6%" src="https://badge-generator.vercel.app/api?icon=Github&label=Last%20Commit&status=May&color=6941C6"/> -->
     <a href="https://discord.gg/hzNHTpwt">
         <img width="10%" src="https://badge-generator.vercel.app/api?icon=Discord&label=Discord&status=Live&color=6941C6"> 
     </a>
