@@ -22,7 +22,7 @@
 
 <p> As digital identity becomes the cornerstone of secure online interactions, the threat landscape has evolved far beyond password breaches and phishing. </p>
 
-<p> Modern attackers now leverage advanced spoofing techniques—such as printed photos, replayed videos, 3D masks, and AI-generated deepfakes—to trick facial recognition systems. </p>
+<p> Modern attackers now leverage advanced spoofing techniques like a GAN image which is a synthetic (i.e., fake) image produced by an AI model trained to generate realistic-looking images that resemble real ones, such as human faces, animals, objects, or even artwork—to trick facial recognition systems. </p>
 
 <p> This calls for a new generation of AI-powered defenses that go beyond static image verification and ensure the authenticity of every face presented in digital workflows.</p>
 
