@@ -10,3 +10,4 @@ services:
     restart: unless-stopped
     environment:
       - TZ=Asia/Kolkata
+    mem_limit: 1024m

@@ -4,10 +4,11 @@ import numpy as np
 from fastapi import FastAPI, File, UploadFile, Query, HTTPException
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-import io
 import base64
 import os
 from utils.visualization import visualize_results
+from PIL import Image
+from io import BytesIO
 
 app = FastAPI()
 
@@ -15,7 +16,8 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:5000"
+        "http://localhost:5000",  # Alternative Vite port
+        "http://127.0.0.1:5000",
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -23,8 +25,13 @@ app.add_middleware(
 )
 
 # Dictionary of available models
+# AVAILABLE_MODELS = {
+#     "default": "models/efficientnet-b7.onnx",
+# }
 AVAILABLE_MODELS = {
-    "default": "models/efficientnet-b7.onnx",
+    "default": "models/model.onnx",
+    "fp16": "models/model_fp16.onnx",
+    "efficientnet": "models/efficientnet-b7.onnx",
 }
 
 # Initialize session as None
@@ -59,6 +66,60 @@ try:
     load_model("default")
 except HTTPException as e:
     print(f"Warning: {e.detail}")
+
+def analyze_metadata(exif_data):
+    """Analyze metadata for originality, AI generation, and tampering."""
+    issues = []
+    risk_score = 0
+    analyze_metadata_status = 1
+    if not exif_data:
+        issues.append("No EXIF data found - Could be AI-generated or manipulated.")
+        risk_score += 2
+        analyze_metadata_status = 0
+        return issues, risk_score, analyze_metadata_status
+
+    camera_make = exif_data.get('Make', None)
+    camera_model = exif_data.get('Model', None)
+    creation_date = exif_data.get('DateTime', None)
+    modification_date = exif_data.get('DateTimeDigitized', None)
+
+    if camera_make is None or camera_model is None:
+        issues.append("Camera make/model missing - Could indicate tampering or AI generation.")
+        #analyze_metadata_status = 0
+        risk_score += 2
+
+    if creation_date and modification_date:
+        try:
+            creation_dt = datetime.strptime(creation_date, "%Y:%m:%d %H:%M:%S")
+            modification_dt = datetime.strptime(modification_date, "%Y:%m:%d %H:%M:%S")
+            if (modification_dt - creation_dt).total_seconds() > 60:
+                issues.append("Significant modification after creation")
+                risk_score += 1
+        except Exception as e:
+            issues.append(f"Date parsing issue: {e}")
+            risk_score += 1
+    else:
+        issues.append("Missing creation or modification date")
+        risk_score += 1
+
+    gps_info = exif_data.get('GPSInfo', None)
+    if not gps_info:
+        issues.append("No GPS location data")
+        risk_score += 1
+
+    software = exif_data.get('Software', None)
+    if software:
+        # if "Adobe" in software or "GIMP" in software or "Photoshop" in software:
+        #     issues.append(f"Edited with {software}")
+        #     risk_score += 2
+        if any(keyword in software for keyword in ("Adobe", "GIMP", "Photoshop")):
+            issues.append(f"Edited with {software}")
+            risk_score += 2
+            #analyze_metadata_status = 0
+    else:
+        issues.append("No editing software info")
+
+    return issues, risk_score, analyze_metadata_status
 
 def predict(image, model_name="default"):
     global session
@@ -103,20 +164,36 @@ async def predict_image(file: UploadFile = File(...), model_name: str = Query("d
                 status_code=400,
                 detail="Invalid image file or format not supported"
             )
+        pil_image = Image.open(BytesIO(contents))
+        exif_data = pil_image._getexif()
+        metadata_issues, metadata_score, analyze_metadata_status = analyze_metadata(exif_data)
+        if analyze_metadata_status:
+            # List of models to validate one after another
+            model_sequence = [ "efficientnet"]
+            results = []
+            # Default final label
+            final_label = "REAL"
 
-        # Get prediction
-        label, confidence = predict(image, model_name)
+            # Validate with each model
+            for model_name in model_sequence:
+                # Load and predict with each model
+                load_model(model_name)
+                label, confidence = predict(image, model_name)
+                if label == "Deepfake detected":
+                    final_label = "Deepfake detected"
+                    break  # No need to check further models
 
-        # Visualize results
-        visualized_image = visualize_results(image, label, confidence)
-        # Convert the image to base64
-        _, buffer = cv2.imencode('.png', visualized_image)
-        image_base64 = base64.b64encode(buffer).decode('utf-8')
-
-        # Return the results
+            # Visualize results
+            visualized_image = visualize_results(image, label, confidence)
+            
+            # Convert the image to base64
+            _, buffer = cv2.imencode('.png', visualized_image)
+            image_base64 = base64.b64encode(buffer).decode('utf-8')
+        else:
+            final_label = 'Deepfake Detected'
+        # Return the results along with intermediate model outputs
         return JSONResponse(content={
-            "label": label,
-            "image": f"data:image/png;base64,{image_base64}"
+            "label": final_label
         })
 
     except HTTPException as e:
