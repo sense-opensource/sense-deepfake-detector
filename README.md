@@ -4,7 +4,7 @@
     <a href="https://github.com/sense-opensource/sense-deepfake-detector/blob/main/LICENSE">
         <img width="8%" src="https://badge-generator.vercel.app/api?label=License&status=MIT&color=6941C6">
     </a>
-    <img width="12.6%" src="https://badge-generator.vercel.app/api?icon=Github&label=Last%20Commit&status=May&color=6941C6"/> 
+    <!--<img width="12.6%" src="https://badge-generator.vercel.app/api?icon=Github&label=Last%20Commit&status=May&color=6941C6"/> -->
     <a href="https://discord.gg/hzNHTpwt">
         <img width="10%" src="https://badge-generator.vercel.app/api?icon=Discord&label=Discord&status=Live&color=6941C6"> 
     </a>
@@ -22,7 +22,7 @@
 
 <p> As digital identity becomes the cornerstone of secure online interactions, the threat landscape has evolved far beyond password breaches and phishing. </p>
 
-<p> Modern attackers now leverage advanced spoofing techniques—such as printed photos, replayed videos, 3D masks, and AI-generated deepfakes—to trick facial recognition systems. </p>
+<p> Modern attackers now leverage advanced spoofing techniques like a GAN image which is a synthetic (i.e., fake) image produced by an AI model trained to generate realistic-looking images that resemble real ones, such as human faces—to trick facial recognition systems. </p>
 
 <p> This calls for a new generation of AI-powered defenses that go beyond static image verification and ensure the authenticity of every face presented in digital workflows.</p>
 
@@ -46,7 +46,7 @@ cd sense-deepfake-detector
 
 <h4> 🧠 Model </h4>
 
-<p> TThe ONNX model file is **not included** in the repository.  
+<p> The ONNX model file is <b>not included</b> in the repository.  
 You must download the model file manually or programmatically and place it in the appropriate folder.</p>
 
 <h4> ✅ Download Instructions </h4>
@@ -87,10 +87,8 @@ docker build -t sense_deepfake_opensource_image .
 
 ```docker
 docker run -d --name sense_deepfake_opensource_container -p 3015:3015 sense_deepfake_opensource_image
-
-docker rm -f sense_liveness_opensource_container
 ```
-<p>This will start the API server on: http://localhost:3015 </p>
+This will start the API server on: http://localhost:3015
 
 <h3>3. Run the Frontend </h3>
 
